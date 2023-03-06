@@ -1,0 +1,30 @@
+<html>
+  <h1>Editing Book</h1>
+  
+  <% if @book.errors.any? %>
+  <%= @book.errors.count %>error prohibited this book from being saved:
+  <ul>
+    <% @book.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+  
+  <%= form_with model: @book, method: :patch do |f| %>
+
+  <h4>Title</h4>
+  <%=f.text_field :title%>
+  <!--<input class="bool_title" type="text" value="たのしいRuby" name="book[title]" id="book_title">-->
+  <div>
+  <h4>Body</h4>
+  <%=f.text_area :body%>
+  <!--<textarea class="book_body" name="book[body]" id="book_body">Rubyの入門におすすめです</textarea>-->
+  </div>
+  <%= f.submit 'Update Book' %>
+  
+<% end %>
+<div>
+ <%= link_to "Show" , book_path(@book.id) %>
+ |
+ <%= link_to "Back", books_path %>
+</html>
